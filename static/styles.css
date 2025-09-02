@@ -1,0 +1,797 @@
+/* Main Layout */
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.header { 
+    background: white; 
+    padding: 24px; 
+    border-radius: 16px; 
+    margin-bottom: 24px; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.header h1 { 
+    margin: 0; 
+    color: #333; 
+}
+
+.status { 
+    display: inline-block; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    margin-left: 10px; 
+}
+
+.status.connected { 
+    background: #d4edda; 
+    color: #155724; 
+}
+
+.status.disconnected { 
+    background: #f8d7da; 
+    color: #721c24; 
+}
+
+.dashboard { 
+    display: grid; 
+    grid-template-columns: 300px 1fr 300px; 
+    gap: 20px; 
+}
+
+.sidebar, .main-content, .details { 
+    background: rgba(255,255,255,0.95); 
+    padding: 24px; 
+    border-radius: 16px; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar h3, .main-content h3, .details h3 { 
+    margin-top: 0; 
+    color: #333; 
+}
+
+.btn { 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    display: inline-block; 
+    margin: 5px 0; 
+}
+
+.btn:hover { 
+    background: #0056b3; 
+}
+
+.btn:disabled { 
+    background: #ccc; 
+    cursor: not-allowed; 
+}
+
+/* Email List Styles */
+.email-list { 
+    max-height: 600px; 
+    overflow-y: auto; 
+}
+
+.email-item { 
+    border: 1px solid #ddd; 
+    border-radius: 12px; 
+    margin-bottom: 16px; 
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.email-item:hover { 
+    box-shadow: 0 4px 16px rgba(0,123,255,0.15);
+    transform: translateY(-2px);
+}
+
+.email-item.selected {
+    border-color: #007bff;
+    box-shadow: 0 4px 20px rgba(0,123,255,0.25);
+}
+
+.email-item.expanded {
+    border-color: #007bff;
+    box-shadow: 0 6px 24px rgba(0,123,255,0.2);
+}
+
+.email-item.has-tasks {
+    border-left: 5px solid #007bff;
+    background: linear-gradient(90deg, #e3f2fd 0%, #ffffff 8%);
+}
+
+.email-item.high-priority { 
+    border-left: 5px solid #dc3545; 
+}
+
+.email-item.medium-priority { 
+    border-left: 5px solid #ffc107; 
+}
+
+.email-item.low-priority { 
+    border-left: 5px solid #28a745; 
+}
+
+.email-compact {
+    padding: 16px;
+    cursor: pointer;
+}
+
+.email-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin-bottom: 12px; 
+}
+
+.email-sender { 
+    flex: 1;
+}
+
+.sender-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.sender-indicators {
+    display: flex;
+    gap: 4px;
+}
+
+.task-indicator, .important-indicator, .priority-indicator { 
+    font-size: 14px;
+    padding: 2px;
+}
+
+.email-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.email-time { 
+    font-size: 12px; 
+    color: #666;
+    white-space: nowrap;
+}
+
+.expand-arrow {
+    font-size: 12px;
+    color: #007bff;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.expand-arrow:hover {
+    background: rgba(0,123,255,0.1);
+    border-radius: 4px;
+}
+
+.email-subject { 
+    color: #333; 
+    margin: 8px 0; 
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.email-preview { 
+    color: #666; 
+    font-size: 13px; 
+    margin: 8px 0; 
+    line-height: 1.4;
+}
+
+.email-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 10px;
+}
+
+.email-labels { 
+    display: flex; 
+    gap: 4px; 
+    flex-wrap: wrap;
+}
+
+.label { 
+    background: #e9ecef; 
+    color: #495057; 
+    padding: 2px 8px; 
+    border-radius: 12px; 
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.task-label {
+    background: #007bff !important;
+    color: white !important;
+}
+
+.priority-score { 
+    font-size: 12px; 
+    color: #666; 
+    font-weight: 500;
+}
+
+.loading { 
+    text-align: center; 
+    padding: 40px; 
+    color: #666; 
+}
+
+/* Expanded Email Styles */
+.email-expanded {
+    border-top: 1px solid #e9ecef;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.email-full-content {
+    padding: 20px;
+}
+
+.email-meta-info {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e9ecef;
+}
+
+.meta-row {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: flex-start;
+}
+
+.meta-row:last-child {
+    margin-bottom: 0;
+}
+
+.meta-label {
+    font-weight: 600;
+    color: #495057;
+    min-width: 80px;
+    margin-right: 12px;
+}
+
+.meta-value {
+    flex: 1;
+    color: #333;
+}
+
+.inline-label {
+    background: #e9ecef;
+    color: #495057;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    margin-right: 4px;
+}
+
+.email-content-section {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e9ecef;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.content-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.task-detected {
+    background: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.email-body-full {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 6px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+}
+
+.email-actions-section {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.action-btn.primary {
+    background: #007bff;
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.action-btn.secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.action-btn.secondary:hover {
+    background: #545b62;
+    transform: translateY(-1px);
+}
+
+.action-btn.disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.action-btn:disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Summary Styles */
+.summary { 
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); 
+    padding: 15px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    border: 1px solid #dee2e6;
+}
+
+.overall-summary {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #bbdefb;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.overall-summary .summary-placeholder {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px 10px;
+}
+
+.overall-summary .placeholder-text {
+    font-size: 14px;
+}
+
+.briefing-content {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.briefing-content strong {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+/* Concise Summary Styles */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.word-count {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.summary-content.simple {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    background: white;
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.summary-content.concise {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 12px;
+}
+
+.summary-footer {
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid #e9ecef;
+}
+
+.summary-footer small {
+    color: #6c757d;
+    font-size: 11px;
+}
+
+.briefing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e3f2fd;
+}
+
+.briefing-badge {
+    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.briefing-loading {
+    text-align: center;
+    padding: 20px;
+    color: #1976d2;
+}
+
+.briefing-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e3f2fd;
+    border-top: 2px solid #1976d2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 8px;
+}
+
+.summary-item {
+    margin-bottom: 8px;
+    padding: 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-item.priority {
+    color: #dc3545;
+}
+
+.summary-item.tasks {
+    color: #007bff;
+    font-weight: 500;
+}
+
+.label-count {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.label-name {
+    font-size: 12px;
+    color: #495057;
+}
+
+.label-number {
+    background: #007bff;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.no-labels {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Email Details Styling */
+.email-detail-header h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.email-meta {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.email-meta div {
+    margin-bottom: 6px;
+}
+
+.email-labels-section {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.email-content {
+    margin-top: 15px;
+}
+
+.email-body {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 8px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* AI Summary Styles */
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.ai-status {
+    font-size: 12px;
+}
+
+.ai-indicator {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.ai-indicator.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.ai-indicator.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.email-summary-container {
+    min-height: 200px;
+    margin-bottom: 20px;
+}
+
+.summary-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.summary-placeholder h4 {
+    margin: 0 0 8px 0;
+    color: #495057;
+}
+
+.summary-loading {
+    text-align: center;
+    padding: 30px 20px;
+    color: #007bff;
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #e9ecef;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ai-summary {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.summary-header {
+    margin-bottom: 16px;
+}
+
+.ai-badge {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.summary-content {
+    line-height: 1.6;
+    color: #333;
+    font-size: 14px;
+}
+
+.summary-content strong {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.summary-error {
+    text-align: center;
+    padding: 30px 20px;
+    color: #dc3545;
+}
+
+.error-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.summary-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+}
+
+.btn.primary:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    background: #6c757d;
+    color: white;
+    border: none;
+}
+
+.btn.secondary:hover {
+    background: #545b62;
+    transform: translateY(-1px);
+}
+
+.btn.disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.details-section {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.details-section h4 {
+    margin: 0 0 12px 0;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.email-details-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard { 
+        grid-template-columns: 1fr; 
+    }
+}

@@ -83,12 +83,12 @@ class MeetingRequest(BaseModel):
 # Core agent logic
 class MomoAgent:
     def __init__(self):
-        self.openai_key = os.getenv('OPENAI_API_KEY')
+        self.gemini_key = os.getenv('GEMINI_API_KEY')
         
     def classify_email(self, email: EmailInput) -> Dict:
         """Classify email importance using simple heuristics and keywords"""
         
-        # Simple keyword-based classification (replace with OpenAI later)
+        # Simple keyword-based classification (replace with Gemini later)
         important_keywords = [
             'urgent', 'asap', 'deadline', 'meeting', 'call', 'interview',
             'contract', 'proposal', 'budget', 'revenue', 'client', 'customer'
@@ -244,7 +244,7 @@ async def chat_with_momo(message: dict):
     """Simple chat interface with Momo"""
     user_message = message.get('message', '')
     
-    # Simple response logic (can be enhanced with OpenAI)
+    # Simple response logic (can be enhanced with Gemini)
     if 'email' in user_message.lower():
         return {'response': 'I can help you classify and prioritize your emails. Send them to /emails/classify endpoint.'}
     elif 'meeting' in user_message.lower() or 'schedule' in user_message.lower():

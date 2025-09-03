@@ -1,0 +1,27 @@
+#!/bin/bash
+# Momo Email Assistant Launcher
+
+# Get the directory of this script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BUNDLE_DIR="$DIR/../.."
+
+# Change to bundle directory
+cd "$BUNDLE_DIR"
+
+# Check if Python 3 is available
+if command -v python3 &> /dev/null; then
+    PYTHON_CMD="python3"
+elif command -v python &> /dev/null; then
+    PYTHON_CMD="python"
+else
+    osascript -e 'display dialog "Python 3 is required but not installed. Please install Python 3 from python.org" buttons {"OK"} default button "OK" with icon stop'
+    exit 1
+fi
+
+# Launch the app
+$PYTHON_CMD launch_desktop.py
+
+# If launch fails, show error
+if [ $? -ne 0 ]; then
+    osascript -e 'display dialog "Failed to launch Momo Email Assistant. Please check the terminal for error details." buttons {"OK"} default button "OK" with icon stop'
+fi

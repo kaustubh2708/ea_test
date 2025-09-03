@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Momo Executive Assistant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Momo Executive Assistant</h1>
+            <span id="status" class="status disconnected">Not Connected</span>
+            <button id="connectBtn" class="btn" onclick="connectGmail()">Connect Gmail</button>
+            <button id="refreshBtn" class="btn" onclick="refreshEmails()" disabled>Refresh Emails</button>
+        </div>
+        
+        <div class="dashboard">
+            <div class="sidebar">
+                <h3>📊 Quick Stats</h3>
+                <div id="summary" class="summary">
+                    <div>📧 Total: 0</div>
+                    <div>⭐ Important: 0</div>
+                    <div>📅 With Tasks: 0</div>
+                </div>
+                
+                <h3>🤖 Daily Briefing</h3>
+                <div id="overallSummary" class="overall-summary">
+                    <div class="summary-placeholder">
+                        <div class="placeholder-text">Connect Gmail to see your daily email briefing</div>
+                    </div>
+                </div>
+                
+                <h3>🏷️ Labels</h3>
+                <div id="labels"></div>
+            </div>
+            
+            <div class="main-content">
+                <h3>📧 Classified Emails</h3>
+                <div id="emailList" class="email-list">
+                    <div class="loading">Connect Gmail to see your emails</div>
+                </div>
+            </div>
+            
+            <div class="details">
+                <div class="details-header">
+                    <h3>🤖 AI Email Summary</h3>
+                    <div class="ai-status" id="aiStatus">
+                        <span class="ai-indicator">✨ AI Ready</span>
+                    </div>
+                </div>
+                
+                <div id="emailSummary" class="email-summary-container">
+                    <div class="summary-placeholder">
+                        <div class="placeholder-icon">📧</div>
+                        <h4>Select an Email</h4>
+                        <p>Click on any email to get a simple AI summary explaining what it's about in plain English.</p>
+                    </div>
+                </div>
+                
+                <div class="summary-actions" id="summaryActions" style="display: none;">
+                    <button id="addToCalendar" class="btn primary" onclick="addToCalendar()" disabled>
+                        📅 Add to Calendar
+                    </button>
+                    <button class="btn secondary" onclick="regenerateSummary()">
+                        🔄 Regenerate Summary
+                    </button>
+                </div>
+                
+                <div class="details-section" style="margin-top: 20px;">
+                    <h4>📋 Full Email Details</h4>
+                    <div id="emailDetails" class="email-details-container">
+                        Select an email to view full details
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/app.js"></script>
+</body>
+</html>

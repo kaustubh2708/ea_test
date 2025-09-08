@@ -2,6 +2,11 @@
 
 All notable changes to Momo Executive Assistant will be documented in this file.
 
+## [2.1.1] - 2025-02-09 - GitHub Author Test 🔧
+
+### 🔧 Fixed
+- **GitHub Author Attribution**: Testing correct author display on GitHub commits
+
 ## [2.1.0] - 2025-02-09 - Beautiful UI Transformation 🎨
 
 ### ✨ Added

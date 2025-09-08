@@ -2,6 +2,8 @@
 
 An AI-powered email assistant that helps you prioritize, classify, and manage your emails efficiently with a beautiful modern interface.
 
+> **Latest Update**: GitHub author attribution test - v2.1.1
+
 ## ✨ Features
 
 ### 🎯 **Smart Email Management**
